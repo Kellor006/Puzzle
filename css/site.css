@@ -100,24 +100,20 @@ p
     font-family: Arial, Helvetica, sans-serif
 }
 
-.of3
+.Zip
 {
-    color: blue;
+ color: #0066b6;
 }
 
-.of5
+.Zap
 {
-    color: rgb(255, 0, 242);
+ color: #008b07;
 }
 
-.ofBoth
+.ZipZap
 {
-    color: red;
-}
-
-.ofNone
-{
-    color: chartreuse;
+ color: crimson;
+ font-weight: bold;
 }
 
 main>.container 

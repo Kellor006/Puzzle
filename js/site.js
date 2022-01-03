@@ -1,79 +1,145 @@
 //need to get values from user. These values represent 
 function getValues()
 {
-    //get values from the page
-    let startValue = document.getElementById("pingInput").value;
-    let endValue = document.getElementById("zelInput").value;
-    //Need to validate our input. 
-    //parse into INT
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
-
-
-
-    if(Number.isInteger(startValue) && Number.isInteger(endValue))
+    // get the user value from the page
+    let zipInput = document.getElementById("zipValue").value
+    let zapInput = document.getElementById("zapValue").value
+    //parse for numbers
+    zipInput = parseInt(zipInput);
+    zapInput = parseInt(zapInput);
+    //check that the numbers are int
+    if(Number.isInteger(zipInput) && Number.isInteger(zapInput))
     {
-        //we call generateNumbers
-        let numbers = generateNumbers(startValue, endValue);
-        //we call displayNumbers
-        displayNumbers(numbers);
+        let zzArray = zipZapC(zipInput, zapInput);
+        displayData(zzArray);
     }
     else
     {
-        alert("You must enter numbers");
+        alert("nope, try a number");
     }
 }
 
-//generate numbers from startValue to the endValue
-//logic function(s)
-function generateNumbers(sValue, eValue)
-{
-    let numbers = [];
-
-    //we want to get all numbers from start to end
-    for(let index = sValue; index <= eValue; index++)
+//if else logic 
+function zipZapA(zipInput, zapInput)
+{  
+    //init the returnArray
+    let returnArray = [];
+    
+    //loop from 1-100
+    for (let i = 1; i <= 100; i++) 
     {
-        //this will excute in a loop until index = eValue.
-        numbers.push(index);
-    }
-    return numbers;
-}
-
-//display the numbers and mark the even numbers bold
-//display / view fuctions
-function displayNumbers(numbers)
-{
-    let templateRows="";
-
-    for (let index = 1; index <= 100; index++) 
-    {
-        let className="";
-        let number = numbers[index];
-        //let numbers = toString();
-
-        if(number % 15 == 0)
+        //we need to check the current value in 3 steps
+        //check if divisible by (3&5), (3) then (5)
+        if(i % zipInput == 0 && i % zapInput == 0)
         {
-            className="ofBoth";
-            number = "Puzzle"
+            returnArray.push("ZipZap");
         }
-        else if(number % 3 == 0)
+        else if (i % zipInput == 0)
         {
-            className="of3";
-            number = "Puz"
+            returnArray.push("Zip");
         }
-        else if(number % 5 == 0)
+        else if (i % zapInput == 0)
         {
-            className="of5";
-            number = "zle";
-        }
+            returnArray.push("Zap");
+        }    
         else
         {
-            className ="ofNone"
+            returnArray.push(i);
+        }
+    }
+
+    return returnArray;
+}
+//boolian logic
+function zipZapB(zipInput, zapInput)
+{
+    let returnArray = [];
+    let Zip = false;
+    let Zap = false;
+
+    for (let i = 1; i <= 100; i++) 
+    {
+        Zip = i % zipInput == 0;
+        Zap = i % zapInput == 0; 
+
+        switch(true)
+        {
+            case Zip && Zap:
+                {
+                    returnArray.push('ZipZap')
+                    break;
+                }
+            case Zip:
+                {
+                    returnArray.push('Zip')
+                    break;
+                }
+            case Zap:
+                {
+                    returnArray.push('Zap')
+                    break;
+                }
+            default:
+                {
+                    returnArray.push(i);
+                    break;
+                }
         }
         
-        
-        templateRows +=`<td class="${className}">${number}</td>`;
     }
+
+    return returnArray;
+}
+//modulus function
+function zipZapC(zipInput, zapInput)
+{
+    let returnArray = [];
+
+    for (let i = 1; i <= 100; i++) 
+    {
+        let value = ( ( i % zipInput == 0 ? 'Zip' : '' ) + (i % zapInput == 0 ? 'Zap' : '') || i )
+        returnArray.push(value);
+    }
+
+    return returnArray;
+}
+
+//loop over the array and create a tablerow for each item. 
+function displayData(zzArray)
+{
+    // get the table body from the HTML
+    let tableBody = document.getElementById("results"); 
     
-    document.getElementById("results").innerHTML = templateRows;
+    //get the template from the HTML
+    let templateRow = document.getElementById("zzTemplate");
+
+    
+    //clear table first
+    tableBody.innerHTML="";
+
+for (let index = 0; index < zzArray.length; index += 5) 
+    {
+        let tableRow = document.importNode(templateRow.content, true);
+
+        //lets me take all the values in the query (in this case the TD tags).
+        //And it's operating on the above table row
+        let rowCols = tableRow.querySelectorAll("td");
+
+        rowCols[0].classList.add(zzArray[index]);
+        rowCols[0].textContent = zzArray[index];
+
+        rowCols[1].classList.add(zzArray[index + 1]);
+        rowCols[1].textContent = zzArray[index+1];
+
+        rowCols[2].classList.add(zzArray[index + 2]);
+        rowCols[2].textContent = zzArray[index + 2];
+
+        rowCols[3].classList.add(zzArray[index + 3]);
+        rowCols[3].textContent = zzArray[index + 3];
+
+        rowCols[4].classList.add(zzArray[index + 4]);
+        rowCols[4].textContent = zzArray[index + 4];
+
+        tableBody.appendChild(tableRow);
+    }
 }

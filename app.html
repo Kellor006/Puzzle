@@ -58,25 +58,25 @@
                     <h4>ZipZap APP</h4>
                     <div>
                     <p class="lead">Write a short program that displays each number from 1 to 100.
-                        For each multiple of 3, display "Zip" instead of the number.
-                        For each multiple of 5, display "Zap" instead of the number.
-                        For numbers which are multiples of both 3 and 5, display "ZipZap" instead of the number.</p>
+                        For each multiple of (zip input value), display "Zip" instead of the number.
+                        For each multiple of (zap input value), display "Zap" instead of the number.
+                        For numbers which are multiples of both, display "ZipZap" instead of the number.</p>
                     </div>
                     <div class="border-top">
                         <h2>Instructions</h2>
-                        <p>Put some numbers between 1-100 into the fields and press the button!</p>
+                        <p>Want to check which numbers are divisible? Place 2 numbers into the input fields and it will display if those numbers are divisible between 0-100 </p>
                     </div>
                 </div>
                 <div class="col-lg-8 col">
                     <div>
                         <form class="row gy-2 gx-3">
                           <div class="col">
-                            <label for="puzInput">Zip Number</label>
-                            <input onkeydown="return false" id="zipInput" type="number" class="form-control" placeholder="Puz Value" value="0" min="0" max="99" aria-label="Puz Value">
+                            <label for="zipValue">Zip Number</label>
+                            <input id="zipValue" type="number" class="form-control" placeholder="Zip Value" value="0" aria-label="Zip Value">
                           </div>
                           <div class="col">
-                            <label for="zulInput">Zap Number</label>
-                            <input onkeydown="return false" id="zapInput" type="number" class="form-control" placeholder="zel Value" value="100" min="1" max="100" aria-label="zel Value">
+                            <label for="zapValue">Zap Number</label>
+                            <input id="zapValue" type="number" class="form-control" placeholder="Zap Value" value="100" aria-label="Zap Value">
                           </div>
                           <div class="col-12 d-flex justify-content-end">
                             <button id="btnSubmit" type="button" class="btn btn-dark brn-lg">Submit</button>
@@ -114,6 +114,17 @@
             </div>
         </div>
 </footer>
+
+<template id="zzTemplate">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</template>
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
