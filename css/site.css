@@ -100,6 +100,26 @@ p
     font-family: Arial, Helvetica, sans-serif
 }
 
+.of3
+{
+    color: blue;
+}
+
+.of5
+{
+    color: rgb(255, 0, 242);
+}
+
+.ofBoth
+{
+    color: red;
+}
+
+.ofNone
+{
+    color: chartreuse;
+}
+
 main>.container 
 {
     padding: 60px 15px 0;
